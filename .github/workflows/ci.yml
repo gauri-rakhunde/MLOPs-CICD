@@ -21,8 +21,11 @@ jobs:
     - name: Install Dependencies
       run: pip install -r requirements.txt
 
-    - name: Run Test (ML Code)
-      run: python app.py & sleep 5
+    - name: Test API
+      run: |
+        python app.py &
+        sleep 5
+        curl http://localhost:5000
 
     - name: Build Docker Image
       run: docker build -t knn-app .
